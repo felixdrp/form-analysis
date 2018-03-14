@@ -1,7 +1,7 @@
 {
   "name": "form-analysis",
   "version": "1.0.0",
-  "description": "Sentiment analysis.",
+  "description": "Form analysis.",
   "main": "index.js",
   "dependencies": {
     "contractions": "github:msrose/node-contractions",

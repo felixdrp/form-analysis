@@ -59,14 +59,16 @@ const _phrases = (input) => {
       let colPhrases = row.columns[columIndex].val.split('.')
 
       for (let phrase of colPhrases) {
+        let id = phrasesIndex.length
         // If no phrase continue
         if (phrase.trim() == '') {
           continue
         }
 
-        phrases[phrasesIndex.length] = analysePhrase(phrase)
+        phrases[id] = analysePhrase(phrase)
+        phrases[id].id = id
 
-        phrases[phrasesIndex.length].position = {
+        phrases[id].position = {
           rowID: rowIndex,
           columnID: columIndex,
           textIndex: row.columns[columIndex].val.indexOf(phrase)

@@ -9,14 +9,19 @@ const expanse = {
           _text = _text.replace(RegExp(contraction, i), this.list[contraction])
         }
       } else {
-        // contraction between spaces.
-        if (_text.match(RegExp(` ${contraction} `, 'i'))) {
-          _text = _text.replace(RegExp(` ${contraction} `, 'i'), ` ${this.list[contraction]} `)
-        }
-        // contraction between point and space.
-        if (_text.match(RegExp(`.${contraction} `, 'i'))) {
-          _text = _text.replace(RegExp(`.{contraction} `, 'i'), `.${this.list[contraction]} `)
-        }
+        // if (
+        //   _text.indexOf('e.g.') > -1 &&
+        //   contraction == 'e\\.g\\.'
+        // ) {
+        //   debugger
+        // }
+        // contraction between space point and ()
+        [' ', '.', '('].forEach( character => {
+          let char = character == ' '? ' ': `\\${character}`
+          if (_text.match(RegExp(char + contraction + ' ', 'gi'))) {
+            _text = _text.replace(RegExp(char + contraction + ' ', 'gi'), `${character}${this.list[contraction]} `)
+          }
+        })
       }
     }
 
@@ -26,7 +31,11 @@ const expanse = {
     // dr for doctor
     // '^dr\\s': 'doctor ',
     // 'dr': 'doctor',
-    'dr.': 'dr'
+    'dr.': 'dr',
+    // e.g.
+    'e\\.g\\.': 'for example',
+    // w.r.t.
+    'w\\.r\\.t\\.': 'with regards to',
   }
 }
 

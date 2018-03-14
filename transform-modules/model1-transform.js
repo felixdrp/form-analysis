@@ -28,6 +28,7 @@ var natural = require('natural'),
 var contractions = require('contractions');
 var customExpansion = require('./custom-expansion');
 var phrases = require('./phrase-analysis');
+var invertedIndex = require('./inverted-index');
 
 const transform = (data) => {
   let titles = {}
@@ -71,7 +72,7 @@ const transform = (data) => {
       columns: element.slice(2).reduce(
         (result, value, index) => {
           let _value = contractions.expand(value);
-          _value = customExpansion.expand(value);
+          _value = customExpansion.expand(_value);
           // Check expanded text
           // if (value != contractions.expand(value)) {
           //   console.log( 'expanded: ')
@@ -86,7 +87,7 @@ const transform = (data) => {
           // }
 
           result[index] = {
-            val: contractions.expand(value),
+            val: _value,
             id: index
           }
           return result
@@ -109,6 +110,8 @@ const transform = (data) => {
   }
 
   output.phrases = phrases(output)
+  output.invIdx = invertedIndex(output.phrases)
+  debugger
 
   return output
 }
