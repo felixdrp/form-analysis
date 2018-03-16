@@ -9,7 +9,7 @@
 //    original: '',
 //    originalTokenized: '',
 //    stopWordized: '',
-//    brigramsFromStopWordized: '',
+//    bigramsFromStopWordized: '',
 //    stemmingFromStopWordized: '',
 //    sentiment: {},
 //  },
@@ -30,13 +30,13 @@ const analysePhrase = (phrase) => {
     // stemmingFromStopWordized.push(natural.PorterStemmer.stem(val))
     stemmingFromStopWordized.push(natural.LancasterStemmer.stem(val))
   })
-  brigramsFromStopWordized = NGrams.bigrams(stopWordized)
+  bigramsFromStopWordized = NGrams.bigrams(stopWordized)
   // debugger
   return {
      original: phrase,
      originalTokenized,
      stopWordized,
-     brigramsFromStopWordized,
+     bigramsFromStopWordized,
      stemmingFromStopWordized
      // sentiment: {},
   }

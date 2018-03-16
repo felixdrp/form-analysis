@@ -29,6 +29,7 @@ var contractions = require('contractions');
 var customExpansion = require('./custom-expansion');
 var phrases = require('./phrase-analysis');
 var invertedIndex = require('./inverted-index');
+var bigramFrequency = require('./bigram-frequency');
 
 const transform = (data) => {
   let titles = {}
@@ -111,6 +112,8 @@ const transform = (data) => {
 
   output.phrases = phrases(output)
   output.invIdx = invertedIndex(output.phrases)
+  output.bigramFreq = bigramFrequency(output.phrases)
+
   debugger
 
   return output
