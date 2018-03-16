@@ -2,7 +2,7 @@
   "name": "form-analysis",
   "version": "1.0.0",
   "description": "Form analysis.",
-  "main": "index.js",
+  "main": "./transform-modules/model1-transform.js",
   "dependencies": {
     "contractions": "github:msrose/node-contractions",
     "csv-parse": "^2.0.4",
