@@ -21,8 +21,7 @@
 //   rawData: {}
 // }
 _ = require('underscore');
-var natural = require('natural'),
-    stemmer = natural.PorterStemmer;
+var natural = require('natural');
 
 // Uses the word list from https://en.wikipedia.org/wiki/Wikipedia:List_of_English_contractions.
 var contractions = require('contractions');
@@ -114,7 +113,7 @@ const transform = (data) => {
   output.invIdx = invertedIndex(output.phrases)
   output.bigramFreq = bigramFrequency(output.phrases)
 
-  debugger
+  // debugger
 
   return output
 }

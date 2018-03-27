@@ -16,6 +16,8 @@
 
 var sw = require('stopword')
 var natural = require('natural');
+var emotional = require('emotional');
+var sentiment = require('sentiment');
 var tokenizer = new natural.WordTokenizer();
 var NGrams = natural.NGrams;
 var wordnet = new natural.WordNet();
@@ -24,6 +26,7 @@ const analysePhrase = (phrase) => {
   let originalTokenized = tokenizer.tokenize(phrase)
   let stopWordized = sw.removeStopwords(originalTokenized)
   let stemmingFromStopWordized = []
+  let emotion
   // Choose between stemmers:
   // https://github.com/NaturalNode/natural#stemmers
   stopWordized.forEach(val => {
@@ -31,13 +34,18 @@ const analysePhrase = (phrase) => {
     stemmingFromStopWordized.push(natural.LancasterStemmer.stem(val))
   })
   bigramsFromStopWordized = NGrams.bigrams(stopWordized)
+
+  // emotional.load(() => {
+  //   emotion = emotional.get(phrase.toString());
+  // })
   // debugger
   return {
      original: phrase,
      originalTokenized,
      stopWordized,
      bigramsFromStopWordized,
-     stemmingFromStopWordized
+     stemmingFromStopWordized,
+     emotion: sentiment(phrase)
      // sentiment: {},
   }
 
