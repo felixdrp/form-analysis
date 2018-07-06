@@ -44,7 +44,7 @@ const transform = (data) => {
 
     // Find column type
     do {
-      if (data[j][index] == undefined | data[j][index] == '') {
+      if (data[j][index] == undefined || data[j][index] == '') {
         // If not defined go to next row until get a correct type
         j++;
         continue;
