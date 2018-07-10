@@ -44,6 +44,15 @@ const transform = (data) => {
 
     // Find column type
     do {
+      // if it is the last element assign one
+      if (j == data.length) {
+        if (index == 5 || index == 6) {
+          columnType = 'string'
+        } else {
+          columnType = 'numeric'
+        }
+        break
+      }
       if (data[j][index] == undefined || data[j][index] == '') {
         // If not defined go to next row until get a correct type
         j++;
